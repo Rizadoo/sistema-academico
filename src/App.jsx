@@ -36,18 +36,41 @@ function App() {
     { id: 1, nombre: 'Ana', nota: 4.5 }
   ]);
 
+  const [nombreInput, setNombreInput] = useState('');
+
   function agregar() {
-    const nuevo = { id: Date.now(), nombre: 'Nuevo', nota: 3.2 };
-    setEstudiantes([...estudiantes, nuevo]);      // uno NUEVO, no push
+    if (!nombreInput.trim()) return;
+    const nuevo = { id: Date.now(), nombre:nombreInput, nota: 3.2 };
+    setEstudiantes([...estudiantes, nuevo]);
+    setNombreInput('');
   }
 
   return (
     <>
       <h1>Notas</h1>
-      <ul>
-        {estudiantes.map(e => <li key={e.id}>{e.nombre} - {e.nota}</li>)}
-      </ul>
-      <Boton alHacerClic={agregar}>Agregar estudiante</Boton>
+      <div>
+        <input
+        type="text"
+        value={nombreInput}
+        onChange={e => setNombreInput(e.target.value)}
+        />
+        <Boton alHacerClic={agregar}>Agregar estudiante</Boton>
+      </div>
+
+      <table>
+        <thead>
+          <tr>
+            <th>Nombre</th>
+            <th>Nota</th>
+            <th>Estado</th>
+          </tr>
+        </thead>
+        <tbody>
+          {estudiantes.map(e => (
+            <FilaEstudiante key={e.id} estudiante={e} />
+          ))}
+        </tbody>
+      </table>
     </>
   );
 }
