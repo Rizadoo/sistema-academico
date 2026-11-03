@@ -18,6 +18,19 @@ function Boton({ children, alHacerClic, variante = 'primario', cargando = false 
   );
 }
 
+function FilaEstudiante({ estudiante }) {
+  const estado = estudiante.nota >= 3.0 ? 'Aprobado' : 'Reprobado';
+
+  return (
+    <tr>
+      <td>{estudiante.nombre}</td>
+      <td>{estudiante.nota}</td>
+      <td>{estado}</td>
+    </tr>
+  );
+}
+
+
 function App() {
   const [estudiantes, setEstudiantes] = useState([
     { id: 1, nombre: 'Ana', nota: 4.5 }
