@@ -5,30 +5,8 @@
 // ============================================================
 
 import { useState } from 'react';
-
-function Boton({ children, alHacerClic, variante = 'primario', cargando = false }) {
-  return (
-    <button
-      onClick={alHacerClic}
-      disabled={cargando}
-      className={`boton ${variante}`}
-    >
-      {cargando ? 'Cargando...' : children}
-    </button>
-  );
-}
-
-function FilaEstudiante({ estudiante }) {
-  const estado = estudiante.nota >= 3.0 ? 'Aprobado' : 'Reprobado';
-
-  return (
-    <tr>
-      <td>{estudiante.nombre}</td>
-      <td>{estudiante.nota}</td>
-      <td>{estado}</td>
-    </tr>
-  );
-}
+import { Boton } from './components/Boton';
+import { FilaEstudiante } from './components/FilaEstudiante';
 
 
 function App() {
